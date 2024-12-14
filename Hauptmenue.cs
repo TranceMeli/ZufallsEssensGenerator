@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
+using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +12,15 @@ namespace Menue
 {
     internal class Hauptmenue
     {
+        Warenkorb warenkorb = new Warenkorb();
+
         Random random = new Random();
         public string name;
+        public string Name { get { return name; } }
         public Hauptmenue()
         {
             
         }
-
         public Hauptmenue(string name)
         { 
             this.name = name; 
@@ -26,79 +31,18 @@ namespace Menue
             this.random = random; 
         }
 
-        public void printMenue()
-        {
-            Console.WriteLine("1.Laender");
-            Console.WriteLine("2 Vorspeisen");
-            Console.WriteLine("3 Hauptspeisen");
-            Console.WriteLine("4. Beilagen");
-            Console.WriteLine("5. Dips");
-
-            Console.WriteLine("Waehle eine Option");
-
-            bool tryParse = int.TryParse(Console.ReadLine(), out int menueOption);
-
-            if (tryParse)
-            {
-                Console.WriteLine(menueOption);
-
-                if (menueOption == 1)
-                {
-                    Laender();
-                }
-                else if (menueOption == 2)
-                {
-                    Vorspeise();
-                }
-                else if (menueOption == 3)
-                {
-                    Hauptspeise();
-                }
-                else if (menueOption == 4)
-                {
-                    Beilagen();
-                }
-                else if (menueOption == 5)
-                {
-                    Dips();
-                }
-                ZurueckOption();
-            }
-            else
-            {
-                Console.WriteLine("Inkorrekte Eingabe");
-                Console.WriteLine("Drücke enter und versuche es nochmal");
-                Console.ReadLine();
-                Console.Clear();
-            }
-        }
-
         public void ZurueckOption()
         {
             Console.WriteLine("Zurueck ins Hauptmenue");
             Console.ReadLine();
             Console.Clear();
-            printMenue();
         }
 
         public void Begruessung()
         {
-            Console.WriteLine("Willkommen");
-            Console.WriteLine();
             Console.WriteLine("Hallo, wie ist dein Name?");
             name = Console.ReadLine();
             Console.WriteLine($"Willkommen {name}");
-        }
-
-        public void Laender() //Auswahl1
-        {
-            var land = new List<string> { "Land1", "Land2", "Land3", "Land4" };
-            foreach (var l in land)
-            {
-                Console.WriteLine(l);
-            }
-            int index = random.Next(land.Count);
-            Console.WriteLine("Deine Wahl fällt auf " + land[index]);
         }
 
         public void Hauptmenueauswahl()
@@ -107,7 +51,7 @@ namespace Menue
             int index = random.Next(hauptmenue.Count);
 
             Console.WriteLine("Deine Wahl fällt auf " + hauptmenue[index]);
-            
+         
 
         }
         public void Vorspeise()
@@ -137,6 +81,192 @@ namespace Menue
             int index = random.Next(dips.Count);
 
             Console.WriteLine("Deine Wahl fällt auf " + dips.Count);
+        }
+        private void hinzufuegenWarenkorb()
+        {
+  
+            Console.WriteLine("Hinzufuegen?");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+            if (keyInfo.Key == ConsoleKey.Enter)
+            {
+                
+                Console.WriteLine("Deine Auswahl wurde in den Warenkorb gelegt");
+
+            }
+            else
+            {
+                HauptMenue();
+            }
+        }
+        public void HauptMenue()
+        {
+            Zufallsmenue zufallsmenue = new Zufallsmenue();
+            Zufallsmenue zufallsmenue1 = new Zufallsmenue();
+            Warenkorb warenkorb = new Warenkorb();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ResetColor();
+            Console.WriteLine();
+
+            ConsoleKeyInfo key;
+            int option = 1;
+            bool isSelected = false;
+            (int left, int top) = Console.GetCursorPosition();
+            string color = "\u001b[32m";
+            Console.CursorVisible = false;
+            int landOption;
+            landOption = random.Next(1, 5);
+
+            while (!isSelected)
+            {
+                Console.SetCursorPosition(left, top);
+                Console.WriteLine("Navigiere mit Pfeiltasten Oben' und 'Unten' \u001b[32mEnter\u001b[0m fuer die Eingabe.");
+                Console.WriteLine($"{(option == 1 ? color : "")}Nimm mich an der Hand!\u001b[0m");
+                Console.WriteLine($"{(option == 2 ? color : "")}Zufall nach Land\u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Völliger Zufall\u001b[0m");
+                Console.WriteLine($"{(option == 4 ? color : "")}Warenkorb\u001b[0m");
+                Console.WriteLine($"{(option == 5 ? color : "")}Exit\u001b[0m");
+
+                key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        option = (option == 5 ? 1 : option + 1);
+                        break;
+                    case ConsoleKey.UpArrow:
+                        option = (option == 1 ? 5 : option - 1);
+                        break;
+                    case ConsoleKey.Enter:
+                        isSelected = true;
+                        if (option == 1)
+                        {
+                            WahlMenue();
+                        }
+                        else if (option == 2)
+                        {
+
+                            if (landOption == 1)
+                            {
+                                zufallsmenue.ZufallDeutsch();
+                                hinzufuegenWarenkorb();
+                                
+                            }
+                            else if (landOption == 2)
+                            {
+                                zufallsmenue1.ZufallItalienisch();
+                                hinzufuegenWarenkorb();
+                                
+                            }
+                            else if (landOption == 3)
+                            {
+                                Console.WriteLine("Test3");
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Test4");
+                            }
+
+                        }
+                        else if (option == 3)
+                        {
+                            zufallsmenue1.Zufall();
+                            hinzufuegenWarenkorb();
+                            
+                        }
+                        else if (option == 4)
+                        {
+                            Console.WriteLine("Diese Produkte wurden in den Warenkorb gelegt");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vielleicht bis bald :)");
+                        }
+
+                        break;
+
+                        //string[] options = new string[]
+                        //{
+                        //    "Nimm mich an der Hand",
+                        //    "Zufall nach Land",
+                        //    "Chaos"
+                        //};
+
+                        //for (int i = 0; i < options.Length; i++)
+                        //{
+                        //    Console.WriteLine(i + 1 + ". " + options[i]);
+                        //}
+                }
+            }
+        }
+        public void WahlMenue()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine();
+            Console.WriteLine("Willkommen!");
+            Console.ResetColor();
+
+            ConsoleKeyInfo key;
+            int option = 1;
+            bool isSelected = false;
+            (int left, int top) = Console.GetCursorPosition();
+            string color = "\u001b[32m";
+            Console.CursorVisible = false;
+
+            while (!isSelected)
+            {
+                Console.SetCursorPosition(left, top);
+                Console.WriteLine("Navigiere mit Pfeiltasten Oben' und 'Unten' \u001b[32mEnter\u001b[0m fuer die Eingabe.");
+                Console.WriteLine($"{(option == 1 ? color : "")}Vorspeisen!\u001b[0m");
+                Console.WriteLine($"{(option == 2 ? color : "")}Hauptspeisen\u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Beilagen\u001b[0m");
+                Console.WriteLine($"{(option == 4 ? color : "")}Dips\u001b[0m");
+                Console.WriteLine($"{(option == 5 ? color : "")}Hauptmenue\u001b[0m");
+             
+                Console.WriteLine();
+
+                key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        option = (option == 5 ? 1 : option + 1);
+                        break;
+                    case ConsoleKey.UpArrow:
+                        option = (option == 1 ? 5 : option - 1);
+                        break;
+                    case ConsoleKey.Enter:
+                        isSelected = true;
+                        if (option == 1)
+                        {
+                            Vorspeise();
+                            hinzufuegenWarenkorb();
+                        }
+                        else if (option == 2)
+                        {
+                            Hauptspeise();
+                            hinzufuegenWarenkorb();
+                        }
+                        else if (option == 3)
+                        {
+                            Beilagen();
+                            hinzufuegenWarenkorb();
+                        }
+                        else if (option == 4)
+                        {
+                            Dips();
+                            hinzufuegenWarenkorb();
+                        }
+                        else
+                        {
+                            HauptMenue();
+                        }
+                        break;
+                }  
+            }
+            WahlMenue();
         }
     }
 }
