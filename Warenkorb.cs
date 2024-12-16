@@ -31,6 +31,16 @@ namespace Menue
                 total += produkt.Preis;
             }
             return total;
-        }   
+        }
+        //public decimal WarenkorbLeeren()
+        //{
+        //    decimal total = 0;
+        //    foreach (var v in Warenkorb)
+        //    {
+        //        total += total + Preis;
+        //    }
+        //    return total;
+        //}
+
     }
 }

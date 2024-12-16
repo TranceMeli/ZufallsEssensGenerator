@@ -1,3 +1,6 @@
 ﻿https://www.dict.cc/ For translating
 https://www.google.com/ Obvious
 https://stackoverflow.com/
+https://www.c-sharpcorner.com/
+https://www.geeksforgeeks.org/
+https://www.w3schools.com/

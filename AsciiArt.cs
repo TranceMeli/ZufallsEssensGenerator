@@ -25,5 +25,9 @@ namespace Menue
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("\r\n                _....----\"\"\"----...._\r\n             .-'  o    o    o    o   '-.\r\n            /  o    o    o         o    \\  \r\n         __/__o___o_ _ o___ _ o_ o_ _ _o_\\__\r\n        /                                   \\\r\n        \\___________________________________/\r\n          \\~`-`.__.`-~`._.~`-`~.-~.__.~`-`/\r\n           \\                             /\r\n            `-._______________________.-'\r\n");
         }
+        public void Pizza()
+        {
+            Console.WriteLine("    _....._\r\n    _.:`.--|--.`:._\r\n  .: .'\\o  | o /'. '.\r\n // '.  \\ o|  /  o '.\\\r\n//'._o'. \\ |o/ o_.-'o\\\\\r\n|| o '-.'.\\|/.-' o   ||\r\n||--o--o-->|");
+        }
     }
 }
