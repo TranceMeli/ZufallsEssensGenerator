@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -19,11 +20,12 @@ namespace Menue
         public string name;
         public string Auswahl { get; set; }
         public decimal Preis { get; set; }
-        public string userEingabe {  get; set; }
+        public string userEingabe { get; set; }
+        public string sprueche { get; }
 
         public override string ToString()
         {
-            return $" {Auswahl} {Preis}";
+            return $"{Auswahl}, {Preis}";
         }
         public Essen()
         {
@@ -51,10 +53,10 @@ namespace Menue
         {
             List<Vorspeise> meineVorspeise = new List<Vorspeise>();
             {
-                meineVorspeise.Add(new Vorspeise() { Preis = 11.99m, Auswahl = "Vorspeise 1" });
-                meineVorspeise.Add(new Vorspeise() { Preis = 11.99m, Auswahl = "Vorspeise 1" });
-                meineVorspeise.Add(new Vorspeise() { Preis = 11.99m, Auswahl = "Vorspeise 1" });
-                meineVorspeise.Add(new Vorspeise() { Preis = 11.99m, Auswahl = "Vorspeise 1" });
+                meineVorspeise.Add(new Vorspeise() { Preis = 12.99m, Auswahl = "Vorspeise 1" });
+                meineVorspeise.Add(new Vorspeise() { Preis = 11.99m, Auswahl = "Vorspeise 2" });
+                meineVorspeise.Add(new Vorspeise() { Preis = 10.99m, Auswahl = "Vorspeise 3" });
+                meineVorspeise.Add(new Vorspeise() { Preis = 9.99m, Auswahl = "Vorspeise 4" });
             };
 
             Random random = new Random();
@@ -82,7 +84,7 @@ namespace Menue
             meineBeilagen.Add(new Beilagen() { Preis = 8.99m, Auswahl = "Beilage 4" });
 
             int index = random.Next(meineBeilagen.Count);
-            Console.WriteLine(meineBeilagen[index]);    
+            Console.WriteLine(meineBeilagen[index]);
         }
     }
 
@@ -147,10 +149,9 @@ namespace Menue
             beilagen.Beilagenauswahl();
             dips.Dipauswahl();
         }
-
         public void ZurueckOption()
         {
-            Console.WriteLine("Zurueck ins Hauptmenue");
+            Console.WriteLine("Zurück ins Hauptmenü");
             Console.ReadLine();
             Console.Clear();
         }
@@ -159,54 +160,13 @@ namespace Menue
         {
             Console.WriteLine("Hallo, wie ist dein Name?");
             name = Console.ReadLine();
-            Console.WriteLine($"Willkommen {name}");
+            Console.WriteLine($"Willkommen {name} bei Essen 2.0!");
         }
 
-        public void Hauptmenueauswahl2()
-        {
-            Random random = new Random();
-            var hauptmenue = new List<string> { "Vorspeise", "Hauptspeise", "Beilagen", "Dips" };
-            int index = random.Next(hauptmenue.Count);
-
-            Console.WriteLine("Deine Wahl fällt auf " + hauptmenue[index]);
-
-
-        }
-        public void Vorspeise2()
-        {
-            Random random = new Random();
-            var vorspeisen = new List<string> { "Vorspeise1", "Vorspeise2", "Vorspeise3", "Vorspeise4" };
-            int index = random.Next(vorspeisen.Count);
-
-            Console.WriteLine("Deine Wahl fällt auf " + vorspeisen[index]);
-        }
-        public void Hauptspeise2()
-        {
-            Random random = new Random();
-            var hauptspeisen = new List<string> { "Hauptspeise1", "Hauptspeise2", "Hauptspeise3", "Hauptspeise4" };
-            int index = random.Next(hauptspeisen.Count);
-
-            Console.WriteLine("Deine Wahl fällt auf " + hauptspeisen[index]);
-        }
-        public void Beilagen2()
-        {
-            Random random = new Random();
-            var beilagen = new List<string> { "Beilage1", "Beilage2", "Beilage3", "Beilage4" };
-            int index = random.Next(beilagen.Count);
-
-            Console.WriteLine("Deine Wahl fällt auf " + beilagen[index]);
-        }
-        public void Dips2()
-        {
-            Random random = new Random();
-            var dips = new List<string> { "Dip1", "Dip2", "Dip3", "Dip4" };
-            int index = random.Next(dips.Count);
-
-            Console.WriteLine("Deine Wahl fällt auf " + dips[index]);
-        }
         private void hinzufuegenWarenkorb()
         {
-            Console.WriteLine("Hinzufuegen? Enter fuer JA und Esc fue NEIN um etwas anderes zu waehlen");
+            Console.WriteLine();
+            Console.WriteLine("Hinzufügen? Enter für JA und Esc für NEIN um etwas anderes zu wählen\n");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
             if (keyInfo.Key == ConsoleKey.Enter)
@@ -217,7 +177,6 @@ namespace Menue
             }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
-
                 Console.WriteLine("Vielleicht etwas anderes?");
             }
             else
@@ -228,20 +187,18 @@ namespace Menue
         public void HauptMenue()
         {
             Random random = new Random();
-            Zufallsmenue zufallsmenue = new Zufallsmenue();
-            Zufallsmenue zufallsmenue1 = new Zufallsmenue();
             Warenkorb warenkorb = new Warenkorb();
-            AsciiArt asciiArt2 = new AsciiArt();
+            AsciiArt asciiArt = new AsciiArt();
+            ZufallLand zufallLand = new ZufallLand();
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.ResetColor();
-            Console.WriteLine();
 
             ConsoleKeyInfo key;
             int option = 1;
             bool isSelected = false;
             (int left, int top) = Console.GetCursorPosition();
-            string color = "\u001b[32m";
+            string color = "\u001b[42m";
             Console.CursorVisible = false;
             int landOption;
             landOption = random.Next(1, 5);
@@ -249,22 +206,23 @@ namespace Menue
             while (!isSelected)
             {
                 Console.SetCursorPosition(left, top);
-                Console.WriteLine("Navigiere mit Pfeiltasten 'Oben' und 'Unten' \u001b[32mEnter\u001b[0m fuer die Eingabe.");
                 Console.WriteLine($"{(option == 1 ? color : "")}Nimm mich an der Hand!\u001b[0m");
                 Console.WriteLine($"{(option == 2 ? color : "")}Zufall nach Land\u001b[0m");
-                Console.WriteLine($"{(option == 3 ? color : "")}Voelliger Zufall\u001b[0m");
-                Console.WriteLine($"{(option == 4 ? color : "")}Warenkorb\u001b[0m");
-                Console.WriteLine($"{(option == 5 ? color : "")}Exit\u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Völliger Zufall\u001b[0m");
+                Console.WriteLine($"{(option == 4 ? color : "")}Spezielle Optionen\u001b[0m");
+                Console.WriteLine($"{(option == 5 ? color : "")}Warenkorb\u001b[0m");
+                Console.WriteLine($"{(option == 6 ? color : "")}Exit\u001b[0m");
+                Console.WriteLine();
 
                 key = Console.ReadKey(true);
 
                 switch (key.Key)
                 {
                     case ConsoleKey.DownArrow:
-                        option = (option == 5 ? 1 : option + 1);
+                        option = (option == 6 ? 1 : option + 1);
                         break;
                     case ConsoleKey.UpArrow:
-                        option = (option == 1 ? 5 : option - 1);
+                        option = (option == 1 ? 6 : option - 1);
                         break;
                     case ConsoleKey.Enter:
                         isSelected = true;
@@ -277,46 +235,64 @@ namespace Menue
 
                             if (landOption == 1)
                             {
-                                zufallsmenue.ZufallDeutsch();
+                                zufallLand.ZufallLand1();
                                 hinzufuegenWarenkorb();
-
                             }
                             else if (landOption == 2)
                             {
-                                zufallsmenue1.ZufallItalienisch();
+                                zufallLand.ZufallLand2();
                                 hinzufuegenWarenkorb();
-
                             }
                             else if (landOption == 3)
                             {
-                                Console.WriteLine("Land 3 Zufall");
-
+                                zufallLand.ZufallLand3();
+                                hinzufuegenWarenkorb();
                             }
                             else
                             {
-                                Console.WriteLine("Land 4 Zufall");
+                                zufallLand.ZufallLand4();
+                                hinzufuegenWarenkorb();
                             }
+                        HauptMenue();
                         }
+                        
                         else if (option == 3)
                         {
-                            zufallsmenue1.Zufall();
+                            Console.WriteLine("Deine Auswahl, oh nein der Zufall will es so fällt auf: \n");
+                            MenueZufall();
                             hinzufuegenWarenkorb();
 
                         }
                         else if (option == 4)
                         {
+                            SpezielleOptionen();
+  
+                        }
+                        else if (option == 5)
+                        {
                             Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            asciiArt2.Pizza();
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            asciiArt.Pizza();
                             Console.ResetColor();
-                            Console.WriteLine("Diese Produkte wurden in den Warenkorb gelegt...");
+                            Console.WriteLine("\nDiese Produkte wurden in den Warenkorb gelegt...\n");
+                            string[] produkte = new string[]
+                            {
+                                "Hauptspeise , 20,99 Euro",
+                                "Beilagen , 11.99 Euro",
+                                "Dips , 5.99 Euro",
+                            };
+                            for (int i = 0; i < produkte.Length; i++)
+                            {
+                                Console.WriteLine(i + 1 + "."  + produkte[i]);
+                            }
                             
+                            Console.WriteLine("Jetzt Bestellen oder Abholen? \n");
+                            BestellenAbholen();
                         }
                         else
                         {
                             Console.WriteLine("Vielleicht bis bald :)");
                         }
-
                         break;
 
                         //string[] options = new string[]
@@ -332,7 +308,7 @@ namespace Menue
                         //}
                 }
             }
-            WahlMenue();
+            HauptMenue();
         }
         public void WahlMenue()
         {
@@ -341,30 +317,27 @@ namespace Menue
             Beilagen beilagen = new Beilagen();
             Dips dips = new Dips();
 
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            Console.WriteLine("Willkommen!");
             Console.ResetColor();
 
             ConsoleKeyInfo key;
             int option = 1;
             bool isSelected = false;
             (int left, int top) = Console.GetCursorPosition();
-            string color = "\u001b[32m";
+            string color = "\u001b[42m";
             Console.CursorVisible = false;
 
             while (!isSelected)
             {
                 Console.SetCursorPosition(left, top);
-                Console.WriteLine("Navigiere mit Pfeiltasten 'Oben' und 'Unten' \u001b[32mEnter\u001b[0m fuer die Eingabe.");
-                Console.WriteLine($"{(option == 1 ? color : "")}Vorspeisen!\u001b[0m");
+                //Console.WriteLine("Navigiere mit Pfeiltasten 'Oben' und 'Unten' \u001b[32mEnter\u001b[0m fuer die Eingabe.");
+                Console.WriteLine($"{(option == 1 ? color : "")}Vorspeisen\u001b[0m");
                 Console.WriteLine($"{(option == 2 ? color : "")}Hauptspeisen\u001b[0m");
                 Console.WriteLine($"{(option == 3 ? color : "")}Beilagen\u001b[0m");
                 Console.WriteLine($"{(option == 4 ? color : "")}Dips\u001b[0m");
-                Console.WriteLine($"{(option == 5 ? color : "")}Hauptmenue\u001b[0m");
-
-                Console.WriteLine();
+                Console.WriteLine($"{(option == 5 ? color : "")}Hauptmenü\u001b[0m");
+                
 
                 key = Console.ReadKey(true);
 
@@ -381,25 +354,21 @@ namespace Menue
                         if (option == 1)
                         {
                             vorspeise.Vorspeisenauswahl();
-                            //Vorspeise2();
                             hinzufuegenWarenkorb();
                         }
                         else if (option == 2)
                         {
                             hauptspeise.Hauptspeisenauswahl();
-                            //Hauptmenueauswahl2();
                             hinzufuegenWarenkorb();
                         }
                         else if (option == 3)
                         {
-                            hauptspeise.Hauptspeisenauswahl();
-                            Beilagen2();
+                            beilagen.Beilagenauswahl();
                             hinzufuegenWarenkorb();
                         }
                         else if (option == 4)
                         {
                             dips.Dipauswahl();
-                            //Dips2();
                             hinzufuegenWarenkorb();
                         }
                         else
@@ -410,8 +379,224 @@ namespace Menue
                 }
             }
             WahlMenue();
-        }  
+        }
+        public void SpezielleOptionen()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.Write("Spezielle Optionen für spezielle Momente");
+            Console.ResetColor();
+            Console.WriteLine();
+            //Console.WriteLine("Spezielle Optionen für spezielle Momente");
+            Console.WriteLine();
+
+            ConsoleKeyInfo key;
+            int option = 1;
+            bool isSelected = false;
+            (int left, int top) = Console.GetCursorPosition();
+            string color = "\u001b[42m";
+            Console.CursorVisible = false;
+
+            while (!isSelected)
+            {
+                Console.SetCursorPosition(left, top);
+                //Console.WriteLine("Navigiere mit Pfeiltasten 'Oben' und 'Unten' \u001b[32mEnter\u001b[0m fuer die Eingabe.");
+                Console.WriteLine($"{(option == 1 ? color : "")}Die besten Menüs.. von euch gewählt.\u001b[0m");
+                Console.WriteLine($"{(option == 2 ? color : "")}Scharf schärfer am schärfsten.\u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Hilfe die Verwandtschaft kommt.\u001b[0m");
+                Console.WriteLine($"{(option == 4 ? color : "")}Hauptmenü\u001b[0m");
+                Console.WriteLine();
+
+                key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        option = (option == 4 ? 1 : option + 1);
+                        break;
+                    case ConsoleKey.UpArrow:
+                        option = (option == 1 ? 4 : option - 1);
+                        break;
+                    case ConsoleKey.Enter:
+                        isSelected = true;
+                        if (option == 1)
+                        {
+                            Console.WriteLine("Die besten Menüs in monatlicher Abstimmung von euch gewählt! :)\n");
+                        }
+                        else if (option == 2)
+                        {
+                            Console.WriteLine("Kannst du es mit den schärfsten Menüs aufnehmen?\n");
+                        }
+                        else if (option == 3)
+                        {
+                            Console.WriteLine("Nichts zuhause aber Besuch naht.. Keine Sorge wir helfen.\n");
+                        }
+                        else
+                        {
+                            HauptMenue();
+                        }
+                        break;
+                }
+            }
+            SpezielleOptionen();
+        }
+        public void BestellenAbholen()
+        {
+            ConsoleKeyInfo key;
+            int option = 1;
+            bool isSelected = false;
+            (int left, int top) = Console.GetCursorPosition();
+            string color = "\u001b[42m";
+            Console.CursorVisible = false;
+
+            while (!isSelected)
+            {
+                Console.SetCursorPosition(left, top);
+                //Console.WriteLine("Navigiere mit Pfeiltasten 'Oben' und 'Unten' \u001b[32mEnter\u001b[0m fuer die Eingabe.");
+                Console.WriteLine($"{(option == 1 ? color : "")}Bestellen\u001b[0m");
+                Console.WriteLine($"{(option == 2 ? color : "")}Abholen\u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")}Hauptmenü\u001b[0m");
+                Console.WriteLine();
+
+                key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        option = (option == 3 ? 1 : option + 1);
+                        break;
+                    case ConsoleKey.UpArrow:
+                        option = (option == 1 ? 3 : option - 1);
+                        break;
+                    case ConsoleKey.Enter:
+                        isSelected = true;
+                        if (option == 1)
+                        {
+                            if (option == 1 || option == 2 || option == 3)
+                            {
+                                Console.WriteLine("Vielen Dank für deine Bestellung. :) Deine Bestellung wird in Kürze zu dir geliefert.\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Vielleicht etwas anderes\n");
+                            }    
+                        }
+                        else if (option == 2)
+                        {
+                            Console.WriteLine("Abholung in der Nähe inklusive Routenplanung.\n");
+
+                            string[] restaurants = new string[]
+                            {
+                                "Restaurant ..",
+                                "Restaurant ..",
+                                "Restaurant ..\n"
+                            };
+
+                            for (int i = 0; i < restaurants.Length; i++)
+                            {
+                                Console.WriteLine(i + 1 + ". " + restaurants[i]);
+                            }
+
+                                Console.WriteLine("Bestellung für Restaurant 1 in die Wege geleitet.. \nKlicke hier um auf dem schnellsten Weg dorthin zu gelangen.");                
+                        }
+                        else
+                        {
+                            HauptMenue();
+                        }
+                        break;
+                }
+            }
+        }
+        public void Sprueche()
+        {
+            Random random = new Random();
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            string[] sayings = new string[]
+            {
+                "Willkommen bei Essen 2.0 :)",
+                "Bestelle jetzt und erhalte dein Essen in 30 Minuten!",
+                "20 % Rabatt bei Abholung!",
+                "Führender Testsieger unter den Lieferservices!",
+                "Jetzt neu Lieferung mit Drohne!",
+                "Wir sind die Besten.. und ja wir meinen das wirklich so :)"
+            };
+
+            int index = random.Next(sayings.Length);
+            Console.Write(sayings[index]);
+            Console.ResetColor();
+            Console.WriteLine();
+        }
     }
+    public class ZufallLand : Essen
+    {
+        public ZufallLand()
+        {
+
+
+        }
+
+        public void ZufallLand1()
+        {
+            List<ZufallLand> Vorspeise = new List<ZufallLand>();
+            List<ZufallLand> Hauptspeise = new List<ZufallLand>();
+            List<ZufallLand> Beilagen = new List<ZufallLand>();
+            List<ZufallLand> Dips = new List<ZufallLand>();
+            {
+                Vorspeise.Add(new ZufallLand() { Preis = 10.99m, Auswahl = "Land 1, Vorspeise 1" });
+                Vorspeise.Add(new ZufallLand() { Preis = 9.99m, Auswahl = "Land 1, Vorspeise 2" });
+                Vorspeise.Add(new ZufallLand() { Preis = 7.99m, Auswahl = "Land 1, Vorspeise 3" });
+                Vorspeise.Add(new ZufallLand() { Preis = 8.99m, Auswahl = "Land 1, Vorspeise 4" });
+
+                Random random = new Random();
+                int index = random.Next(Vorspeise.Count);
+                //Console.WriteLine(Vorspeise[index]);
+
+                Hauptspeise.Add(new ZufallLand() { Preis = 20.99m, Auswahl = "Land 1, Hauptspeise 1" });
+                Hauptspeise.Add(new ZufallLand() { Preis = 19.99m, Auswahl = "Land 1, Hauptspeise 2" });
+                Hauptspeise.Add(new ZufallLand() { Preis = 22.99m, Auswahl = "Land 1, Hauptspeise 3" });
+                Hauptspeise.Add(new ZufallLand() { Preis = 23.99m, Auswahl = "Land 1, Hauptspeise 4" });
+
+                int index2 = random.Next(Hauptspeise.Count);
+                //Console.WriteLine(Hauptspeise[index]);
+
+                Beilagen.Add(new ZufallLand() { Preis = 12.99m, Auswahl = "Land 1, Beilagen 1" });
+                Beilagen.Add(new ZufallLand() { Preis = 13.99m, Auswahl = "Land 1, Beilagen 2" });
+                Beilagen.Add(new ZufallLand() { Preis = 10.99m, Auswahl = "Land 1, Beilagen 3" });
+                Beilagen.Add(new ZufallLand() { Preis = 14.99m, Auswahl = "Land 1, Beilagen 4" });
+
+                int index3 = random.Next(Beilagen.Count);
+                
+                Dips.Add(new ZufallLand() { Preis = 7.99m, Auswahl = "Land 1, Dips 1" });
+                Dips.Add(new ZufallLand() { Preis = 10.99m, Auswahl = "Land 1, Dips 2" });
+                Dips.Add(new ZufallLand() { Preis = 9.99m, Auswahl = "Land 1, Dips 3" });
+                Dips.Add(new ZufallLand() { Preis = 8.99m, Auswahl = "Land 1, Dips 4" });
+
+                int index4 = random.Next(Dips.Count);
+                //Console.WriteLine(Beilagen[index]);
+
+                //var deineAuswahl = Vorspeise[index] + " " + Hauptspeise[index];
+                Console.WriteLine("Deine Wahl faellt auf: " + Vorspeise[index] + " " + Hauptspeise[index2] + " " + Beilagen[index3] + " " + Dips[index4]);
+            }
+        }
+        public void ZufallLand2()
+        {
+
+            Console.WriteLine("Deine Wahl ist: Land 2");
+        }
+        public void ZufallLand3()
+        {
+                
+            Console.WriteLine("Deine Wahl ist Land 3");
+
+        }
+        public void ZufallLand4()
+        {
+
+            Console.WriteLine("Deine Wahl ist Land 4");
+            
+        }
+    }  
 }
 
 

@@ -1,0 +1,15 @@
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\Menue.exe
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\Menue.deps.json
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\Menue.runtimeconfig.json
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\Menue.dll
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\Menue.pdb
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.AssemblyInfoInputs.cache
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.AssemblyInfo.cs
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.csproj.CoreCompileInputs.cache
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.sourcelink.json
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.dll
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\refint\Menue.dll
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.pdb
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\Menue.genruntimeconfig.cache
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ref\Menue.dll

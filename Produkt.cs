@@ -15,8 +15,6 @@ namespace Menue
         public Produkt() 
         {
 
-        }
-
-        
+        }  
     }
 }
