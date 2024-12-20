@@ -16,6 +16,7 @@ namespace Menue
             MenueStruktur menueStruktur = new MenueStruktur();
 
             asciiArt.WillkommenAscii();
+            //asciiArt.BurgerAscii();
             menueStruktur.Begruessung();
             menueStruktur.Sprueche();
             Console.WriteLine();

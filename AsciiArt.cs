@@ -28,25 +28,21 @@ namespace Menue
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\r\n                _....----\"\"\"----...._\r\n             .-'  o    o    o    o   '-.\r\n            /  o    o    o         o    \\  \r\n         __/__o___o_ _ o___ _ o_ o_ _ _o_\\__\r\n        /                                   \\\r\n        \\___________________________________/\r\n          \\~`-`.__.`-~`._.~`-`~.-~.__.~`-`/\r\n           \\                             /\r\n            `-._______________________.-'\r\n");
             Console.WriteLine();
+            Console.ResetColor(); 
         }
         public void Pizza()
         {
-            //Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.Green;
             string pizza = "    _....._\r\n    _.:`.--|--.`:._\r\n  .: .'\\o  | o /'. '.\r\n // '.  \\ o|  /  o '.\\\r\n//'._o'. \\ |o/ o_.-'o\\\\\r\n|| o '-.'.\\|/.-' o   ||\r\n||--o--o-->|";  
             Console.Write(pizza);
         }
-        public void Book()
-        {
-            string book = "   __________________   __________________\r\n.-/|                  \\ /                  |\\-.\r\n||||                   |                   ||||\r\n||||                   |       ~~*~~       ||||\r\n||||    --==*==--      |                   ||||\r\n||||                   |                   ||||\r\n||||                   |                   ||||\r\n||||                   |     --==*==--     ||||\r\n||||                   |                   ||||\r\n||||                   |                   ||||\r\n||||                   |                   ||||\r\n||||                   |                   ||||\r\n||||__________________ | __________________||||\r\n||/===================\\|/===================\\||\r\n`--------------------~___~-------------------''";
-            Console.WriteLine(book);
-        }
 
-        public void Divider()
+        public void Trennlinie()
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            string divider = ":*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.";
-            Console.WriteLine(divider);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor= ConsoleColor.Green;
+            string trennlinie= "_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_";
+            Console.WriteLine(trennlinie);
         }
     }
 }

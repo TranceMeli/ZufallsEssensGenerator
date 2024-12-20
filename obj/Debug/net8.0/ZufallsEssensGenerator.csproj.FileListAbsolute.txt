@@ -1,0 +1,15 @@
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\ZufallsEssensGenerator.exe
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\ZufallsEssensGenerator.deps.json
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\ZufallsEssensGenerator.runtimeconfig.json
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\ZufallsEssensGenerator.dll
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\bin\Debug\net8.0\ZufallsEssensGenerator.pdb
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.AssemblyInfoInputs.cache
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.AssemblyInfo.cs
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.csproj.CoreCompileInputs.cache
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.sourcelink.json
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.dll
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\refint\ZufallsEssensGenerator.dll
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.pdb
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ZufallsEssensGenerator.genruntimeconfig.cache
+C:\Users\SchadlMelani_3k1p0ca\source\repos\Forschungsauftrag\GenerateMenue\obj\Debug\net8.0\ref\ZufallsEssensGenerator.dll
