@@ -50,3 +50,8 @@ dotnet run
     Dips         = new() { ... }
 }
 ```
+
+## Preview
+
+<img width="574" height="272" alt="image" src="https://github.com/user-attachments/assets/4d20f252-99c2-4b6e-beb8-9801ddd914a0" />
+
