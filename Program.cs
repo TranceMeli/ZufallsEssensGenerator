@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Channels;
-using Menue;
+﻿using Menue;
 
 namespace Menue
 {
@@ -10,17 +6,14 @@ namespace Menue
     {
         public static void Main(string[] args)
         {
-           
             AsciiArt asciiArt = new AsciiArt();
-            Essen essen = new Essen();
             MenueStruktur menueStruktur = new MenueStruktur();
 
             asciiArt.WillkommenAscii();
-            //asciiArt.BurgerAscii();
             menueStruktur.Begruessung();
             menueStruktur.Sprueche();
             Console.WriteLine();
-            menueStruktur.HauptMenue();  
+            menueStruktur.HauptMenue();
         }
     }
 }
